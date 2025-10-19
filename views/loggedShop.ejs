@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SamutSari - Shop</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Filipino Online Shopping" name="keywords">
+    <meta content="Shop for authentic Filipino products online" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom Color Override - Matching index.ejs exactly -->
+    <style>
+        :root {
+            --primary: #EE4D2D;
+            --secondary: #F8F9FA;
+            --light: #F3F6FF;
+            --dark: #191C24;
+            --darker-orange: #d63e22;
+        }
+
+        .text-primary {
+            color: #EE4D2D !important;
+        }
+
+        .bg-primary {
+            background-color: #EE4D2D !important;
+        }
+
+        .btn-primary {
+            background-color: #EE4D2D !important;
+            border-color: #EE4D2D !important;
+        }
+
+        .btn-primary:hover {
+            background-color: #d63e22 !important;
+            border-color: #d63e22 !important;
+        }
+
+        .btn-outline-primary {
+            color: #EE4D2D !important;
+            border-color: #EE4D2D !important;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #EE4D2D !important;
+            border-color: #EE4D2D !important;
+        }
+
+        .border {
+            border-color: #EE4D2D !important;
+        }
+
+        .input-group-text {
+            background-color: transparent !important;
+            color: #EE4D2D !important;
+        }
+
+        /* Categories Dropdown Improvements - Change hover to darker orange */
+        .bg-primary:hover {
+            background-color: #d63e22 !important;
+        }
+
+        .navbar-vertical .dropdown-menu {
+            padding: 10px 0;
+        }
+
+        /* Push categories dropdown contents more to center */
+        .navbar-vertical .dropdown-item {
+            padding: 8px 30px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-vertical .dropdown-item:hover {
+            background-color: #d63e22 !important;
+            color: white !important;
+        }
+
+        /* Product Image Borders */
+        .product-item .product-img img {
+            border: 2px solid #EE4D2D !important;
+            transition: .5s;
+        }
+
+        .product-item:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        /* FIXED: Button hover with consistent sizing */
+        .product-item .card-footer .btn {
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8px 16px !important;
+            border-radius: 4px;
+            min-width: 80px;
+            box-sizing: border-box;
+        }
+
+        .product-item .card-footer .btn:hover {
+            background: var(--primary) !important;
+            border-color: var(--primary) !important;
+            color: #FFFFFF !important;
+            text-decoration: none;
+            padding: 8px 16px !important;
+            min-width: 80px;
+        }
+
+        .product-item .card-footer .btn:hover i {
+            color: #FFFFFF !important;
+        }
+
+        /* Make Navigation Bar Bigger and Shop Text Orange */
+        .navbar {
+            min-height: 70px !important;
+        }
+
+        .navbar .nav-link {
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            padding: 15px 20px !important;
+        }
+
+        .nav-link.active {
+            color: #EE4D2D !important;
+            font-weight: 600 !important;
+        }
+
+        /* Change checkbox color to darker orange */
+        .custom-control-input:checked ~ .custom-control-label::before {
+            background-color: #d63e22 !important;
+            border-color: #d63e22 !important;
+        }
+
+        /* Change dropdown menu hover to darker orange */
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #d63e22 !important;
+            color: white !important;
+        }
+
+        /* FULL WIDTH SECTIONS - FORCE PARTNERS AND FOOTER TO EDGE */
+        .full-width-section {
+            width: 100vw !important;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw !important;
+            margin-right: -50vw !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .full-width-section .container-fluid {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            max-width: 100% !important;
+        }
+
+        .full-width-section .row {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        /* Ensure content inside full-width sections has proper spacing */
+        .full-width-section .vendor-carousel,
+        .full-width-section .col-lg-4,
+        .full-width-section .col-lg-8,
+        .full-width-section .col-md-6,
+        .full-width-section .col-md-4 {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        /* Partner carousel fixes */
+        .vendor-carousel .vendor-item {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .vendor-carousel .vendor-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Ensure product images are fixed height and cover container */
+        .product-img img,
+        .product-image {
+            width: 100% !important;
+            height: 220px !important;
+            object-fit: cover !important;
+            display: block;
+        }
+
+        /* Make product cards equal height regardless of content */
+        .product-item {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .product-item .card-body {
+            flex: 1 1 auto;
+        }
+        .product-item .card-footer {
+            flex-shrink: 0;
+            align-self: stretch;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ----- START: REPLACED HEADER/NAV (use loggedServices style) ----- -->
+	<div class="container-fluid">
+		<div class="row bg-primary py-2 px-xl-5">
+			<div class="col-lg-6 d-none d-lg-block">
+				<div class="d-inline-flex align-items-center">
+					<a class="text-light" href="">FAQs</a>
+					<span class="text-light px-2">|</span>
+					<a class="text-light" href="">Help</a>
+					<span class="text-light px-2">|</span>
+					<a class="text-light" href="">Support</a>
+				</div>
+			</div>
+			<div class="col-lg-6 text-center text-lg-right">
+				<div class="d-inline-flex align-items-center">
+					<a class="text-light px-2" href=""><i class="fab fa-facebook-f"></i></a>
+					<a class="text-light px-2" href=""><i class="fab fa-twitter"></i></a>
+					<a class="text-light px-2" href=""><i class="fab fa-linkedin-in"></i></a>
+					<a class="text-light px-2" href=""><i class="fab fa-instagram"></i></a>
+					<a class="text-light pl-2" href=""><i class="fab fa-youtube"></i></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="row align-items-center py-3 px-xl-5">
+			<div class="col-lg-3 d-none d-lg-block">
+				<a href="/homepage" class="text-decoration-none">
+					<h1 class="m-0 display-5 text-primary font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">S</span>amutSari</h1>
+				</a>
+			</div>
+			<div class="col-lg-6 col-6 text-left">
+				<form action="">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for products">
+						<div class="input-group-append">
+							<span class="input-group-text bg-transparent text-primary"><i class="fa fa-search"></i></span>
+						</div>
+					</div>
+				</form>
+			</div>
+<div class="col-lg-3 col-6 text-right">
+                <a href="/cart" class="btn border">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+                <a href="" class="btn border">
+                    <i class="fas fa-heart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+                <a href="" class="btn border">
+                    <i class="fas fa-bookmark text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+		</div>
+	</div>
+
+	<div class="container-fluid mb-5 position-relative">
+		<div class="row border-top px-xl-5">
+			<div class="col-lg-3 d-none d-lg-block position-relative">
+				<!-- Categories button kept for desktop (collapse) -->
+				<a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
+				   data-toggle="collapse" href="#navbar-vertical"
+				   style="height: 65px; padding: 0 30px; cursor: pointer;">
+					<h6 class="m-0">Categories</h6>
+					<i class="fa fa-angle-down text-dark"></i>
+				</a>
+				<nav id="navbar-vertical" class="collapse navbar navbar-vertical navbar-light align-items-start p-0 border position-absolute"
+					 style="top: 65px; z-index: 1000; width: 100%; background: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+					<div class="navbar-nav w-100 overflow-auto" style="max-height: 400px;">
+						<a href="#" class="nav-item nav-link">Personal Care</a>
+						<a href="#" class="nav-item nav-link">Household Items</a>
+						<a href="#" class="nav-item nav-link">Electronics</a>
+						<a href="#" class="nav-item nav-link">Home & Garden</a>
+						<a href="#" class="nav-item nav-link">Accessories</a>
+						<a href="#" class="nav-item nav-link">Baby & Kids</a>
+						<a href="#" class="nav-item nav-link">Sports & Outdoors</a>
+						<a href="#" class="nav-item nav-link">Office Supplies</a>
+						<a href="#" class="nav-item nav-link">Pet Supplies</a>
+					</div>
+				</nav>
+			</div>
+
+			<div class="col-lg-9">
+				<nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapseLoggedShop">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div id="navbarCollapseLoggedShop" class="collapse navbar-collapse justify-content-between">
+						<div class="navbar-nav mr-auto py-0">
+							<a href="/homepage" class="nav-item nav-link">Home</a>
+							<a href="/loggedShop" class="nav-item nav-link active">Shop</a>
+							<a href="/loggedServices" class="nav-item nav-link">Services</a>
+						</div>
+
+						<div class="navbar-nav ml-auto py-0">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fas fa-user-circle text-primary" style="font-size: 24px;"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="/profile" class="dropdown-item">Profile</a>
+                                    <a href="/" class="dropdown-item">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+		<!-- Page Header (kept as-is) -->
+		<div class="row">
+			<div class="col-12 p-0">
+				<div class="container-fluid bg-secondary mb-5" style="margin-top: -1px;">
+					<div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px;">
+						<h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
+						<div class="d-inline-flex">
+							<p class="m-0"><a href="/homepage">Home</a></p>
+							<p class="m-0 px-2">-</p>
+							<p class="m-0">Shop</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ----- END: REPLACED HEADER/NAV ----- -->
+
+    <!-- Shop Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            <!-- Shop Sidebar Start -->
+            <div class="col-lg-3 col-md-12">
+                <!-- Price Start -->
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked="" id="price-all">
+                            <label class="custom-control-label" for="price-all">All Price</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-1">
+                            <label class="custom-control-label" for="price-1">₱50 - ₱100</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-2">
+                            <label class="custom-control-label" for="price-2">₱100 - ₱250</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-3">
+                            <label class="custom-control-label" for="price-3">₱250 - ₱500</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-4">
+                            <label class="custom-control-label" for="price-4">₱500 - ₱1000</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="checkbox" class="custom-control-input" id="price-5">
+                            <label class="custom-control-label" for="price-5">₱1000+</label>
+                            <span class="badge border font-weight-normal">168</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Price End -->
+
+                <!-- Category Start -->
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by Category</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked="" id="category-all">
+                            <label class="custom-control-label" for="category-all">All Categories</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="category-1">
+                            <label class="custom-control-label" for="category-1">Electronics</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="category-2">
+                            <label class="custom-control-label" for="category-2">Fashion</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="category-3">
+                            <label class="custom-control-label" for="category-3">Home & Garden</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="category-4">
+                            <label class="custom-control-label" for="category-4">Sports & Outdoors</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="checkbox" class="custom-control-input" id="category-5">
+                            <label class="custom-control-label" for="category-5">Beauty & Health</label>
+                            <span class="badge border font-weight-normal">168</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Category End -->
+
+                <!-- Brand Start -->
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by Brand</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked="" id="brand-all">
+                            <label class="custom-control-label" for="brand-all">All Brands</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="brand-1">
+                            <label class="custom-control-label" for="brand-1">Samsung</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="brand-2">
+                            <label class="custom-control-label" for="brand-2">LG</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="brand-3">
+                            <label class="custom-control-label" for="brand-3">Sony</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="brand-4">
+                            <label class="custom-control-label" for="brand-4">Apple</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="checkbox" class="custom-control-input" id="brand-5">
+                            <label class="custom-control-label" for="brand-5">Xiaomi</label>
+                            <span class="badge border font-weight-normal">168</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Brand End -->
+
+                <!-- Rating Start -->
+                <div class="mb-5">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by Rating</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked="" id="rating-all">
+                            <label class="custom-control-label" for="rating-all">All Ratings</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="rating-5">
+                            <label class="custom-control-label" for="rating-5">5 Stars</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="rating-4">
+                            <label class="custom-control-label" for="rating-4">4 Stars & Up</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="rating-3">
+                            <label class="custom-control-label" for="rating-3">3 Stars & Up</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="rating-2">
+                            <label class="custom-control-label" for="rating-2">2 Stars & Up</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Rating End -->
+            </div>
+            <!-- Shop Sidebar End -->
+
+            <!-- Shop Product Start -->
+            <div class="col-lg-9 col-md-12">
+                <div class="row pb-3">
+                    <div class="col-12 pb-1">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                             <div class="dropdown ml-4">
+                                 <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                         aria-expanded="false">
+                                             Sort by
+                                         </button>
+                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                     <a class="dropdown-item" href="#">Latest</a>
+                                     <a class="dropdown-item" href="#">Popularity</a>
+                                     <a class="dropdown-item" href="#">Best Rating</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+                    <!-- Render products from server-provided `products` array -->
+					<!-- static sample products (kept simple / static for now) -->
+					<!-- 6 static product cards with consistent sizing -->
+					<div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+						<div class="card product-item border-0 mb-4">
+							<div class="card-header product-img p-0">
+								<img src="/images/FoodsandBevarages.jpg" alt="Organic Fresh Fruits">
+							</div>
+							<div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+								<h6 class="text-truncate mb-3">Organic Fresh Fruits</h6>
+								<div class="d-flex justify-content-center">
+									<h6>₱150.00</h6><h6 class="text-muted ml-2"><del>₱180.00</del></h6>
+								</div>
+							</div>
+							<div class="card-footer d-flex justify-content-between bg-light border">
+								<a href="/shopDetail" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+								<a href="/cart" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+						<div class="card product-item border-0 mb-4">
+							<div class="card-header product-img p-0">
+								<img src="/images/PersonalCare.jpg" alt="Premium Skincare Set">
+							</div>
+							<div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+								<h6 class="text-truncate mb-3">Premium Skincare Set</h6>
+								<div class="d-flex justify-content-center">
+									<h6>₱299.00</h6><h6 class="text-muted ml-2"><del>₱359.00</del></h6>
+								</div>
+							</div>
+							<div class="card-footer d-flex justify-content-between bg-light border">
+								<a href="/shopDetail" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+								<a href="/cart" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+						<div class="card product-item border-0 mb-4">
+							<div class="card-header product-img p-0">
+								<img src="/images/Electronics.jpg" alt="Smart Home Device">
+							</div>
+							<div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+								<h6 class="text-truncate mb-3">Smart Home Device</h6>
+								<div class="d-flex justify-content-center">
+									<h6>₱1,299.00</h6><h6 class="text-muted ml-2"><del>₱1,559.00</del></h6>
+								</div>
+							</div>
+							<div class="card-footer d-flex justify-content-between bg-light border">
+								<a href="/shopDetail" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+								<a href="/cart" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+						<div class="card product-item border-0 mb-4">
+							<div class="card-header product-img p-0">
+								<img src="/images/HouseholdItems.jpg" alt="Household Essentials Pack">
+							</div>
+							<div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+								<h6 class="text-truncate mb-3">Household Essentials Pack</h6>
+								<div class="d-flex justify-content-center">
+									<h6>₱1,999.00</h6><h6 class="text-muted ml-2"><del>₱2,399.00</del></h6>
+								</div>
+							</div>
+							<div class="card-footer d-flex justify-content-between bg-light border">
+								<a href="/shopDetail" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+								<a href="/cart" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+						<div class="card product-item border-0 mb-4">
+							<div class="card-header product-img p-0">
+								<img src="/images/HomeAndGarden.jpg" alt="Garden Tools Set">
+							</div>
+							<div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+								<h6 class="text-truncate mb-3">Garden Tools Set</h6>
+								<div class="d-flex justify-content-center">
+									<h6>₱4,499.00</h6><h6 class="text-muted ml-2"><del>₱5,399.00</del></h6>
+								</div>
+							</div>
+							<div class="card-footer d-flex justify-content-between bg-light border">
+								<a href="/shopDetail" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+								<a href="/cart" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+							</div>
+						</div>
+					</div>
+                 </div>
+            </div>
+            <!-- Shop Product End -->
+        </div>
+    </div>
+    <!-- Shop End -->
+
+    <!-- Featured Service Providers Start -->
+    <div class="container-fluid py-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Top Service Providers</span></h2>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                    <div class="owl-carousel vendor-carousel">
+                        <div class="vendor-item border p-4">
+                            <img src="/images/DelMonte.png" alt="Partner 1" class="img-fluid">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img src="/images/SM-Suppermalls.jpg" alt="Partner 2" class="img-fluid">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img src="/images/Unilever.png" alt="Partner 3" class="img-fluid">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img src="/images/DeWalt.png" alt="Partner 4" class="img-fluid">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img src="/images/ImarFlex.png" alt="Partner 5" class="img-fluid">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img src="/images/Tupperware.png" alt="Partner 6" class="img-fluid">
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- Featured Partners End -->
+
+    <!-- Footer Start - FULL WIDTH -->
+    <div class="full-width-section">
+        <div class="container-fluid bg-light text-dark mt-5 pt-5">
+            <div class="row pt-5">
+                <div class="col-lg-4 col-md-12 mb-5">
+                    <a href="/homepage" class="text-decoration-none">
+                        <h1 class="mb-4 display-5 text-primary font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">S</span>amutSari</h1>
+                    </a>
+                    <p>Your trusted platform for professional services and quality products at reasonable prices. We connect you with skilled Filipino freelancers and provide excellent customer service.</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, Manila, Philippines</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@samutsari.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+63 912 345 6789</p>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mb-5">
+                            <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-dark mb-2" href="/homepage"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                                <a class="text-dark mb-2" href="/loggedShop"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                                <a class="text-dark mb-2" href="/loggedServices"><i class="fa fa-angle-right mr-2"></i>Services</a>
+                                <a class="text-dark mb-2" href="/cart"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                                <a class="text-dark mb-2" href="/checkout"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                                <a class="text-dark mb-2" href="/contact"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-5">
+                            <h5 class="font-weight-bold text-dark mb-4">Popular Services</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>Filipino Logo Design</a>
+                                <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>Web Development</a>
+                                <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>Tagalog Content Writing</a>
+                                <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>Social Media Marketing</a>
+                                <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>Video Editing</a>
+                                <a class="text-dark" href=""><i class="fa fa-angle-right mr-2"></i>English-Tagalog Translation</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-5">
+                            <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
+                            <form action="">
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control border-0 py-4" placeholder="Your Email" required="required">
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top border-light py-4">
+                <div class="col-md-6">
+                    <p class="mb-md-0 text-center text-md-left text-dark">
+                        &copy; <a class="text-dark font-weight-semi-bold" href="/homepage">SamutSari</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <!-- PAYMENT METHODS IMAGE: Replace with your accepted payment methods -->
+                    <img class="img-fluid" src="/images/payments.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top" style="display: none;"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- Logout Success Message Script -->
+    <script>
+        // Check for logout message in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const logoutMessage = urlParams.get('logout');
+
+        if (logoutMessage === 'success') {
+            alert('Successfully logged out!');
+            // Clean URL by removing the parameter
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    </script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="/mail/jqBootstrapValidation.min.js"></script>
+    <script src="/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+
+    <script>
+        // Initialize vendor carousel
+        $('.vendor-carousel').owlCarousel({
+            loop: true,
+            margin: 29,
+            nav: false,
+            autoplay: true,
+            smartSpeed: 1000,
+            responsive: {
+                0:{
+                    items:2
+                },
+                576:{
+                    items:3
+                },
+                768:{
+                    items:4
+                },
+                992:{
+                    items:5
+                },
+                1200:{
+                    items:6
+                }
+            }
+        });
+    </script>
+</body>
+</html>

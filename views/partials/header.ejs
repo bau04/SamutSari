@@ -1,0 +1,80 @@
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons (optional, if you want cart/heart/search icons) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Bootstrap JS (for dropdowns, nav, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Header Top -->
+<div class="header__top bg-light py-2 border-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-7">
+        <div class="header__top__left">
+          <p class="mb-0">Free shipping, 30-day return or refund guarantee.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-5 text-end">
+        <div class="header__top__right d-flex justify-content-end align-items-center">
+          <div class="header__top__links me-3">
+            <a href="/login" class="me-2">Sign in</a>
+            <a href="/faq">FAQs</a>
+          </div>
+          <div class="dropdown">
+            <a class="dropdown-toggle text-decoration-none" href="#" role="button" id="currencyDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              USD
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="currencyDropdown">
+              <li><a class="dropdown-item" href="#">USD</a></li>
+              <li><a class="dropdown-item" href="#">EUR</a></li>
+              <li><a class="dropdown-item" href="#">PHP</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Header -->
+<div class="container py-3">
+  <div class="row align-items-center">
+    <div class="col-lg-3 col-md-3">
+      <div class="header__logo">
+        <a href="/"><img src="..\public\images\SamutSari.png" alt="Logo" style="max-height:50px;"></a>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <nav class="header__menu">
+        <ul class="nav justify-content-center">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/shop">Shop</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown">Pages</a>
+            <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+              <li><a class="dropdown-item" href="/about">About Us</a></li>
+              <li><a class="dropdown-item" href="/cart">Shopping Cart</a></li>
+              <li><a class="dropdown-item" href="/checkout">Checkout</a></li>
+              <li><a class="dropdown-item" href="/blog">Blog</a></li>
+              <li><a class="dropdown-item" href="/contact">Contact</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-lg-3 col-md-3 text-end">
+      <div class="header__nav__option d-flex justify-content-end align-items-center">
+        <a href="#" class="me-3"><i class="bi bi-search"></i></a>
+        <a href="#" class="me-3"><i class="bi bi-heart"></i></a>
+        <a href="/cart" class="position-relative me-3">
+          <i class="bi bi-cart"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+        </a>
+        <div class="price fw-bold">$0.00</div>
+      </div>
+    </div>
+  </div>
+</div>

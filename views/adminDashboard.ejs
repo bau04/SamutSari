@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SamutSari</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --primary: #EE4D2D; --admin-red: #dc3545; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--admin-red), #a71d2a);
+            padding: 20px;
+            color: white;
+        }
+        .sidebar-header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            margin-bottom: 30px;
+        }
+        .sidebar-header h3 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+        .sidebar-menu a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .sidebar-menu a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .sidebar-menu i {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 30px;
+        }
+        .top-header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stats-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .stats-card h3 {
+            color: var(--admin-red);
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        .btn-danger {
+            background: var(--admin-red) !important;
+            border: none !important;
+        }
+        .section-title {
+            color: var(--admin-red);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-shield-alt fa-2x mb-3"></i>
+            <h3>Admin Portal</h3>
+            <small>System Administrator</small>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="/admin/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="/admin/dashboard"><i class="fas fa-users"></i> Users</a></li>
+            <li><a href="/admin/dashboard"><i class="fas fa-store"></i> Sellers</a></li>
+            <li><a href="/admin/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-header">
+            <div>
+                <h2>Admin Dashboard</h2>
+                <p class="text-muted mb-0">Manage users and sellers</p>
+            </div>
+            <div>
+                <span class="text-muted">Admin: <strong><%= admin.username %></strong></span>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="stats-card">
+                    <h3><%= users.length %></h3>
+                    <p class="text-muted mb-0">Total Buyers</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="stats-card">
+                    <h3><%= sellers.length %></h3>
+                    <p class="text-muted mb-0">Total Sellers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="table-container">
+            <h4 class="section-title">Registered Buyers</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user => { %>
+                        <tr>
+                            <td>#<%= user._id.toString().slice(-6) %></td>
+                            <td><%= user.username %></td>
+                            <td><%= user.firstName %> <%= user.lastName %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.contact %></td>
+                            <td>
+                                <form action="/admin/delete-user" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this user?')">
+                                    <input type="hidden" name="userId" value="<%= user._id %>">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sellers Table -->
+        <div class="table-container">
+            <h4 class="section-title">Registered Sellers</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Shop Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Joined</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% sellers.forEach(seller => { %>
+                        <tr>
+                            <td>#<%= seller._id.toString().slice(-6) %></td>
+                            <td><%= seller.username %></td>
+                            <td><%= seller.shopName %></td>
+                            <td><%= seller.email %></td>
+                            <td><%= seller.contact %></td>
+                            <td><%= new Date(seller.createdAt).toLocaleDateString() %></td>
+                            <td>
+                                <form action="/admin/delete-seller" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this seller?')">
+                                    <input type="hidden" name="sellerId" value="<%= seller._id %>">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

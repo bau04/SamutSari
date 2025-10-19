@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Product Detail - SamutSari</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --primary: #EE4D2D; }
+        body { font-family: 'Poppins', sans-serif; }
+        .text-primary { color: #EE4D2D !important; }
+        .bg-primary { background-color: #EE4D2D !important; }
+        .btn-primary {
+            background-color: #EE4D2D !important;
+            border-color: #EE4D2D !important;
+        }
+        .btn-primary:hover {
+            background-color: #d63e22 !important;
+        }
+        .product-detail-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+        }
+        .product-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .product-info {
+            padding: 30px;
+        }
+        .product-price {
+            font-size: 32px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .navbar-brand {
+            color: var(--primary) !important;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-primary py-2 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-light" href="">FAQs</a>
+                    <span class="text-light px-2">|</span>
+                    <a class="text-light" href="">Help</a>
+                    <span class="text-light px-2">|</span>
+                    <a class="text-light" href="">Support</a>
+                    <span class="text-light px-2">|</span>
+                    <a class="text-light" href="/seller/login">Seller Login</a>
+                    <span class="text-light px-2">|</span>
+                    <a class="text-light" href="/admin/login">Admin Login</a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3">
+                <a href="/" class="navbar-brand">
+                    <h1 class="m-0 display-5"><span class="text-primary border px-2 mr-1">S</span>amutSari</h1>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for products">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 text-right">
+                <a href="/cart" class="btn border">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="container-fluid mb-5">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mr-auto">
+                    <a href="/homepage" class="nav-item nav-link">Home</a>
+                    <a href="/loggedShop" class="nav-item nav-link active">Shop</a>
+                    <a href="/loggedServices" class="nav-item nav-link">Services</a>
+                    <a href="/profile" class="nav-item nav-link">Profile</a>
+                </div>
+                <div class="navbar-nav ml-auto">
+                    <a href="/logout" class="nav-item nav-link">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Product Detail -->
+    <div class="container product-detail-container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image">
+            </div>
+            <div class="col-lg-6 product-info">
+                <h1 class="mb-3"><%= product.name %></h1>
+                <p class="product-price mb-4">₱<%= product.price.toLocaleString() %></p>
+                <p class="mb-4"><strong>Category:</strong> <%= product.category %></p>
+                <p class="mb-4"><strong>Description:</strong><br><%= product.description %></p>
+                <p class="mb-4"><strong>Stock:</strong> <%= product.stock %> available</p>
+
+                <form action="/cart/add" method="POST">
+                    <input type="hidden" name="productId" value="<%= product._id %>">
+                    <input type="hidden" name="name" value="<%= product.name %>">
+                    <input type="hidden" name="price" value="<%= product.price %>">
+                    <input type="hidden" name="image" value="<%= product.image %>">
+                    <input type="hidden" name="category" value="<%= product.category %>">
+                    <button type="submit" class="btn btn-primary btn-lg px-5">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </form>
+
+                <a href="/loggedShop" class="btn btn-secondary btn-lg mt-3 px-5">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Shop
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

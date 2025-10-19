@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to top, #EE4D2D 50%, #ff9f7f 90%) no-repeat;
+    }
+
+    .panel {
+      width: 380px;
+      min-height: 420px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 20px 20px 80px rgb(218, 218, 218);
+      padding: 20px;
+    }
+
+    .panel-heading {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    #forgot {
+      min-width: 100px;
+      margin-left: auto;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    .form-inline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-inline label {
+      padding-left: 10px;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .btn.btn-primary {
+      margin-top: 20px;
+      border-radius: 15px;
+      width: 100%;
+      height: 60px;
+      background-color: #EE4D2D;
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn.btn-primary:hover {
+      background-color: #d63f22;
+    }
+
+    .input-field {
+      position: relative;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    .input-field span {
+      color: #EE4D2D;
+      margin-right: 8px;
+    }
+
+    .input-field input {
+      border: none;
+      outline: none;
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .eye-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #EE4D2D;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .bordert {
+      border-top: 1px solid #aaa;
+      margin-top: 15px;
+      position: relative;
+      text-align: center;
+    }
+
+    .bordert:after {
+      content: "or connect with";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      padding: 0px 8px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .social-icons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-icons a img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #EE4D2D;
+      padding: 3px;
+      background: white;
+    }
+
+    .text-center.pt-4 {
+      margin-top: 25px;
+    }
+
+    /* Custom Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      color: #EE4D2D;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .modal-message {
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .modal-button {
+      background-color: #EE4D2D;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .modal-button:hover {
+      background-color: #d63f22;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="pt-3 font-weight-bold">Login</h3>
+    </div>
+    <div class="panel-body p-3">
+      <form action="/login" method="POST">
+        <div class="input-field">
+          <span class="far fa-user p-2"></span>
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="input-field">
+          <span class="fas fa-lock px-2"></span>
+          <input type="password" name="password" placeholder="Enter your Password" id="password" required>
+          <i class="far fa-eye-slash eye-toggle" id="togglePassword"></i>
+        </div>
+        <div class="form-inline">
+          <div>
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember" class="text-muted">Remember me</label>
+          </div>
+          <a href="/forgot-password" id="forgot" class="font-weight-bold">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <div class="text-center pt-4 text-muted">
+          Don't have an account? <a href="/signup">Sign up</a>
+        </div>
+      </form>
+    </div>
+    <div class="bordert"></div>
+    <div class="social-icons">
+      <a href="https://wwww.facebook.com" target="_blank">
+        <img src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg" alt="Facebook">
+      </a>
+      <a href="https://www.google.com" target="_blank">
+        <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt="Google">
+      </a>
+      <a href="https://www.github.com" target="_blank">
+        <img src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png" alt="GitHub">
+      </a>
+    </div>
+  </div>
+
+  <!-- Custom Modal -->
+  <div id="messageModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">⚠️ Login Error</div>
+      <div class="modal-message" id="modalMessage"></div>
+      <button class="modal-button" onclick="closeModal()">OK</button>
+    </div>
+  </div>
+
+  <!-- Hidden input to pass message from server to client -->
+  <% if (message) { %>
+    <input type="hidden" id="serverMessage" value="<%= message.replace(/"/g, '&quot;') %>">
+  <% } %>
+
+  <script>
+    const togglePassword = document.querySelector("#togglePassword");
+    const password = document.querySelector("#password");
+
+    togglePassword.addEventListener("click", function () {
+      const type = password.getAttribute("type") === "password" ? "text" : "password";
+      password.setAttribute("type", type);
+      this.classList.toggle("fa-eye");
+      this.classList.toggle("fa-eye-slash");
+    });
+
+    // Modal functionality
+    function showModal(message) {
+      document.getElementById('modalMessage').textContent = message;
+      document.getElementById('messageModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('messageModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById('messageModal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+
+    // Check for server message on page load
+    window.onload = function() {
+      const messageInput = document.getElementById('serverMessage');
+      if (messageInput) {
+        showModal(messageInput.value);
+      }
+    }
+  </script>
+</body>
+</html>

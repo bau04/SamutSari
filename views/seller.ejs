@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - SamutSari</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --primary: #EE4D2D; --dark: #1a1a1a; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--primary), #d63e22);
+            padding: 20px;
+            color: white;
+        }
+        .sidebar-header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            margin-bottom: 30px;
+        }
+        .sidebar-header h3 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+        .sidebar-menu a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .sidebar-menu a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .sidebar-menu i {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 30px;
+        }
+        .top-header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stats-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .stats-card h3 {
+            color: var(--primary);
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .status-pending { background: #ffc107; color: #000; }
+        .status-processing { background: #17a2b8; color: white; }
+        .status-shipped { background: #007bff; color: white; }
+        .status-delivered { background: #28a745; color: white; }
+        .status-cancelled { background: #dc3545; color: white; }
+        .btn-primary {
+            background: var(--primary) !important;
+            border: none !important;
+        }
+        .btn-primary:hover {
+            background: #d63e22 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-store fa-2x mb-3"></i>
+            <h3>Seller Portal</h3>
+            <small><%= seller.shopName %></small>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="/seller/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="/seller/dashboard"><i class="fas fa-box"></i> Orders</a></li>
+            <li><a href="/seller/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-header">
+            <div>
+                <h2>Dashboard</h2>
+                <p class="text-muted mb-0">Monitor all your orders</p>
+            </div>
+            <div>
+                <span class="text-muted">Welcome, <strong><%= seller.username %></strong></span>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <h3><%= orders.length %></h3>
+                    <p class="text-muted mb-0">Total Orders</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <h3><%= orders.filter(o => o.status === 'Pending').length %></h3>
+                    <p class="text-muted mb-0">Pending</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <h3><%= orders.filter(o => o.status === 'Processing').length %></h3>
+                    <p class="text-muted mb-0">Processing</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <h3><%= orders.filter(o => o.status === 'Delivered').length %></h3>
+                    <p class="text-muted mb-0">Delivered</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="table-container">
+            <h4 class="mb-4">Recent Orders</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% orders.forEach(order => { %>
+                        <tr>
+                            <td>#<%= order._id.toString().slice(-6) %></td>
+                            <td><%= order.userId ? order.userId.username : 'N/A' %></td>
+                            <td><%= order.items.length %> items</td>
+                            <td>₱<%= order.totalPrice.toLocaleString() %></td>
+                            <td>
+                                <span class="status-badge status-<%= order.status.toLowerCase() %>">
+                                    <%= order.status %>
+                                </span>
+                            </td>
+                            <td><%= new Date(order.createdAt).toLocaleDateString() %></td>
+                            <td>
+                                <form action="/seller/update-order" method="POST" class="d-inline">
+                                    <input type="hidden" name="orderId" value="<%= order._id %>">
+                                    <select name="status" onchange="this.form.submit()" class="form-control form-control-sm">
+                                        <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                        <option value="Processing" <%= order.status === 'Processing' ? 'selected' : '' %>>Processing</option>
+                                        <option value="Shipped" <%= order.status === 'Shipped' ? 'selected' : '' %>>Shipped</option>
+                                        <option value="Delivered" <%= order.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                                        <option value="Cancelled" <%= order.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+                                    </select>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

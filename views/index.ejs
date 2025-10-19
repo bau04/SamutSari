@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SamutSari</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon"> <!-- CHANGE: Replace with your favicon -->
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS - THIS WAS MISSING! -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    
+    <!-- Custom Color Override -->
+    <style>
+        :root {
+            --primary: #EE4D2D;
+        }
+        
+        .text-primary {
+            color: #EE4D2D !important;
+        }
+        
+        .bg-primary {
+            background-color: #EE4D2D !important;
+        }
+        
+        .btn-primary {
+            background-color: #EE4D2D !important;
+            border-color: #EE4D2D !important;
+        }
+        
+        .btn-primary:hover {
+            background-color: #d63e22 !important;
+            border-color: #d63e22 !important;
+        }
+        
+        .btn-outline-primary {
+            color: #EE4D2D !important;
+            border-color: #EE4D2D !important;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: #EE4D2D !important;
+            border-color: #EE4D2D !important;
+        }
+        
+        .border {
+            border-color: #EE4D2D !important;
+        }
+        
+        .input-group-text {
+            background-color: transparent !important;
+            color: #EE4D2D !important;
+        }
+
+        /* FIX 5: Categories Dropdown Improvements - Change hover to darker orange */
+        .bg-primary:hover {
+            background-color: #d63e22 !important;
+        }
+        
+        .navbar-vertical .dropdown-menu {
+            padding: 10px 0;
+        }
+        
+        /* FIX 6: Push categories dropdown contents more to center */
+        .navbar-vertical .dropdown-item {
+            padding: 8px 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-vertical .dropdown-item:hover {
+            background-color: #d63e22 !important;
+            color: white !important;
+        }
+
+        /* Product Image Borders for Featured Products and Just Arrived */
+        .product-item .product-img img {
+            border: 2px solid #EE4D2D !important;
+        }
+
+        /* FIX 4: Vendor Cards - Taller with No White Spaces */
+        .vendor-card {
+            background: white !important;
+            border: 2px solid #EE4D2D !important;
+            border-radius: 8px !important;
+            padding: 0 !important;
+            height: 200px;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .vendor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(238, 77, 45, 0.2);
+        }
+
+        .vendor-card img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            border-radius: 6px;
+        }
+
+        /* FIX 1: Category Images - 1:1 Ratio and Same Size */
+        .cat-img {
+            height: 200px !important;
+            overflow: hidden !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: #f8f9fa !important;
+        }
+        
+        .cat-img img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+
+        /* FIX 2: Promotional Images Proper Sizing */
+        .offer .position-relative img {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            opacity: 0.3 !important;
+            z-index: 0 !important;
+        }
+
+        .offer .position-relative {
+            height: 250px !important;
+            overflow: hidden !important;
+        }
+
+        /* FIX 7: Make Navigation Bar Bigger and Home Text Orange */
+        .navbar {
+            min-height: 70px !important;
+        }
+        
+        .navbar .nav-link {
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            padding: 15px 20px !important;
+        }
+        
+        .nav-link.active {
+            color: #EE4D2D !important;
+            font-weight: 600 !important;
+        }
+
+        /* FIX 3: Sample Product Cards Styling */
+        .sample-product-card {
+            border: 2px solid #EE4D2D;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .sample-product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .sample-product-card .product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #EE4D2D;
+        }
+
+        /* Partner carousel fixes */
+        .vendor-carousel .vendor-item {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .vendor-carousel .vendor-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-primary py-2 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-light" href="">FAQs</a>
+                    <span class="text-light px-2">|</span>
+                    <a class="text-light" href="">Help</a>
+                    <span class="text-light px-2">|</span>
+                <a class="text-light" href="">Support</a>
+                    <span class="text-light px-2">|</span>
+                    <a class="text-light" href="/seller/login">Seller Login</a>
+                    <span class="text-light px-2">|</span>
+                    <a class="text-light" href="/admin/login">Admin</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-light px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-light px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-light px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-light px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-light pl-2" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0 display-5 text-primary font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">S</span>amutSari</h1>
+                </a>
+            </div>
+            <div class="col-lg-6 col-6 text-left">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for products">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+<a href="/login" class="btn border">
+                    <i class="fas fa-heart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+                <a href="/login" class="btn border">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div class="container-fluid mb-5">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <!-- Improved Categories Dropdown with hover effects -->
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px; transition: background-color 0.3s ease;">
+                    <h6 class="m-0">Categories</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                    <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                        <!-- Updated Categories for Grocery/Department Store -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Food & Beverages <i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="" class="dropdown-item">Fresh Produce</a>
+                                <a href="" class="dropdown-item">Dairy & Eggs</a>
+                                <a href="" class="dropdown-item">Beverages</a>
+                            </div>
+                        </div>
+                        <a href="" class="nav-item nav-link">Personal Care</a>
+                        <a href="" class="nav-item nav-link">Household Items</a>
+                        <a href="" class="nav-item nav-link">Electronics</a>
+                        <a href="" class="nav-item nav-link">Home & Garden</a>
+                        <a href="" class="nav-item nav-link">Accessories</a>
+                        <a href="" class="nav-item nav-link">Baby & Kids</a>
+                        <a href="" class="nav-item nav-link">Sports & Outdoors</a>
+                        <a href="" class="nav-item nav-link">Office Supplies</a>
+                        <a href="" class="nav-item nav-link">Pet Supplies</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                <!-- FIX 7: Updated Navigation Menu with bigger bar and orange Home text -->
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="/" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 text-primary font-weight-semi-bold">
+                            <span class="text-primary font-weight-bold border px-3 mr-1">S</span>amutSari
+                        </h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="/" class="nav-item nav-link active">Home</a>
+                            <a href="/shop" class="nav-item nav-link">Shop</a>
+                            <a href="/services" class="nav-item nav-link">Services</a>
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            <a href="/login" class="nav-item nav-link">Login</a>
+                            <a href="/register" class="nav-item nav-link">Register</a>
+                        </div>
+                    </div>
+                </nav>
+                <!-- HERO CAROUSEL IMAGES: Replace carousel-1.jpg and carousel-2.jpg with your banner images -->
+                <!-- Recommended size: 1920x410px -->
+                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 410px;">
+                            <img class="img-fluid" src="/images/groceries.jpg" alt="Image"> <!-- CHANGE: Replace with your first banner image -->
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                    <h3 class="display-4 text-white font-weight-bold mb-4">Quality Products</h3>
+                                    <a href="" class="btn btn-light py-2 px-3">Browse Products</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="/images/services2.jpg" alt="Image"> <!-- CHANGE: Replace with your second banner image -->
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">Special Discount</h4>
+                                    <h3 class="display-4 text-light font-weight-bold mb-4">Reasonable Price</h3>
+                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-prev-icon mb-n2"></span>
+                        </div>
+                    </a>
+                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-next-icon mb-n2"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Featured Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-bold m-0">Quality Product</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                    <h5 class="font-weight-bold m-0">Free Shipping</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-bold m-0">14-Day Return</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-bold m-0">24/7 Support</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Featured End -->
+
+    <!-- Categories Start -->
+    <!-- CATEGORY IMAGES: Replace cat-1.jpg to cat-6.jpg with your category images -->
+    <!-- Recommended size: 600x400px -->
+    <!-- FIX 1: Updated Categories for Grocery/Department Store with proper 1:1 ratio -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="/images/FoodsandBevarages.jpg" alt=""> <!-- CHANGE: Replace with food & beverages category image -->
+                    </a>
+                    <h5 class="font-weight-bold m-0">Food & Beverages</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="/images/PersonalCare.jpg" alt=""> <!-- CHANGE: Replace with personal care category image -->
+                    </a>
+                    <h5 class="font-weight-bold m-0">Personal Care</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="/images/HouseholdItems.jpg" alt=""> <!-- CHANGE: Replace with household items category image -->
+                    </a>
+                    <h5 class="font-weight-bold m-0">Household Items</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="/images/Electronics.jpg" alt=""> <!-- CHANGE: Replace with electronics category image -->
+                    </a>
+                    <h5 class="font-weight-bold m-0">Electronics</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="/images/HomeAndGarden.jpg" alt=""> <!-- CHANGE: Replace with home & garden category image -->
+                    </a>
+                    <h5 class="font-weight-bold m-0">Home & Garden</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="/images/Accessories.jpg" alt=""> <!-- CHANGE: Replace with accessories category image -->
+                    </a>
+                    <h5 class="font-weight-bold m-0">Accessories</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Categories End -->
+
+    <!-- Offer Start -->
+    <!-- PROMOTIONAL OFFER IMAGES: Replace offer-1.png and offer-2.png with your promotional images -->
+    <!-- Recommended size: 600x300px -->
+    <!-- FIX 2: Fixed promotional images sizing -->
+    <div class="container-fluid offer pt-5">
+        <div class="row px-xl-5">
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
+                    <img src="/images/FreshProduce.jpg" alt=""> <!-- CHANGE: Replace with your grocery sale offer image -->
+                    <div class="position-relative" style="z-index: 1;">
+                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
+                        <h1 class="mb-4 font-weight-semi-bold">Fresh Produce Sale</h1>
+                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
+                    <img src="/images/Services3.jpg" alt=""> <!-- CHANGE: Replace with your Services offer image -->
+                    <div class="position-relative" style="z-index: 1;">
+                        <h5 class="text-uppercase text-primary mb-3">20% off on first booking</h5>
+                        <h1 class="mb-4 font-weight-semi-bold">Services</h1>
+                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Offer End -->
+
+    <!-- Products Start -->
+    <!-- FIX 3: Sample Product Cards for Featured Products -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Featured Products</span></h2>
+        </div>
+        <div class="row px-xl-5 pb-3">
+            <!-- Sample Product 1 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card sample-product-card border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border-0 p-0">
+                        <div class="product-image" style="background-image: url('/images/FoodsandBevarages.jpg');"></div>
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Organic Fresh Fruits</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>₱150.00</h6><h6 class="text-muted ml-2"><del>₱180.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="/login" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="/login" class="btn btn-sm text-dark p-0 add-to-cart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Sample Product 2 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card sample-product-card border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border-0 p-0">
+                        <div class="product-image" style="background-image: url('/images/PersonalCare.jpg');"></div>
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Premium Skincare Set</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>₱299.00</h6><h6 class="text-muted ml-2"><del>₱359.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="/login" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="/login" class="btn btn-sm text-dark p-0 add-to-cart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Sample Product 3 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card sample-product-card border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border-0 p-0">
+                        <div class="product-image" style="background-image: url('/images/Electronics.jpg');"></div>
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Smart Home Device</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>₱1,299.00</h6><h6 class="text-muted ml-2"><del>₱1,559.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="/login" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="/login" class="btn btn-sm text-dark p-0 add-to-cart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+    <!-- Subscribe Start -->
+    <div class="container-fluid bg-light my-5">
+        <div class="row justify-content-md-center py-5 px-xl-5">
+            <div class="col-md-6 col-12 py-5">
+                <div class="text-center mb-2 pb-2">
+                    <h2 class="section-title px-5 mb-3"><span class="bg-light px-2">Stay Updated</span></h2>
+                    <p>Subscribe to our newsletter for the latest updates on new products and exclusive offers.</p>
+                </div>
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-white p-4" placeholder="Email Goes Here">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary px-4">Subscribe</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Subscribe End -->
+
+    <!-- Products Start -->
+    <!-- FIX 3: Sample Product Cards for Just Arrived -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Just Arrived</span></h2>
+        </div>
+        <div class="row px-xl-5 pb-3">
+            <!-- Sample Product 1 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card sample-product-card border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border-0 p-0">
+                        <div class="product-image" style="background-image: url('/images/HouseholdItems.jpg');"></div>
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Household Essentials Pack</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>₱1999.00</h6><h6 class="text-muted ml-2"><del>₱2399.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="/login" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="/login" class="btn btn-sm text-dark p-0 add-to-cart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Sample Product 2 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card sample-product-card border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border-0 p-0">
+                        <div class="product-image" style="background-image: url('/images/HomeAndGarden.jpg');"></div>
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Garden Tools Set</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>₱4499.00</h6><h6 class="text-muted ml-2"><del>₱5399.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="/login" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="/login" class="btn btn-sm text-dark p-0 add-to-cart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Sample Product 3 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card sample-product-card border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border-0 p-0">
+                        <div class="product-image" style="background-image: url('/images/Accessories.jpg');"></div>
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Fashion Accessories</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>₱799.00</h6><h6 class="text-muted ml-2"><del>₱1199.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="/login" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="/login" class="btn btn-sm text-dark p-0 add-to-cart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+    <!-- Vendor Start -->
+    <!-- VENDOR/PARTNER IMAGES: Replace with your partner/brand logos -->
+    <!-- Recommended size: 200x100px -->
+    <!-- FIX 4: Fixed Vendor Section with Simple Cards Display -->
+    <div class="container-fluid py-5 bg-light">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="bg-light px-2">Our Partners</span></h2>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col-lg-3 col-md-4 col-6 pb-1">
+                <div class="vendor-card border mb-4 p-3">
+                    <img src="/images/DelMonte.png" alt="Partner 1" class="img-fluid"> <!-- CHANGE: Replace with your first partner/brand logo -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 pb-1">
+                <div class="vendor-card border mb-4 p-3">
+                    <img src="/images/SM-Suppermalls.jpg" alt="Partner 2" class="img-fluid"> <!-- CHANGE: Replace with your second partner/brand logo -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 pb-1">
+                <div class="vendor-card border mb-4 p-3">
+                    <img src="/images/Unilever.png" alt="Partner 3" class="img-fluid"> <!-- CHANGE: Replace with your third partner/brand logo -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 pb-1">
+                <div class="vendor-card border mb-4 p-3">
+                    <img src="/images/DeWalt.png" alt="Partner 4" class="img-fluid"> <!-- CHANGE: Replace with your fourth partner/brand logo -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 pb-1">
+                <div class="vendor-card border mb-4 p-3">
+                    <img src="/images/ImarFlex.png" alt="Partner 5" class="img-fluid"> <!-- CHANGE: Replace with your fifth partner/brand logo -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 pb-1">
+                <div class="vendor-card border mb-4 p-3">
+                    <img src="/images/Robinsons.png" alt="Partner 6" class="img-fluid"> <!-- CHANGE: Replace with your sixth partner/brand logo -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 pb-1">
+                <div class="vendor-card border mb-4 p-3">
+                    <img src="/images/Orocan.jpg" alt="Partner 7" class="img-fluid"> <!-- CHANGE: Replace with your seventh partner/brand logo -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 pb-1">
+                <div class="vendor-card border mb-4 p-3">
+                    <img src="/images/Tupperware.png" alt="Partner 8" class="img-fluid"> <!-- CHANGE: Replace with your eighth partner/brand logo -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-light text-dark mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                <a href="" class="text-decoration-none">
+                    <h1 class="mb-4 display-5 text-primary font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">S</span>amutSari</h1>
+                </a>
+                <p>Your trusted partner for quality products at reasonable prices. We provide excellent customer service and fast delivery.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, Manila, Philippines</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@samutsari.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+63 912 345 6789</p>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-dark mb-2" href="/shop"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-dark mb-2" href="/services"><i class="fa fa-angle-right mr-2"></i>Services</a>
+                            <a class="text-dark mb-2" href="/login"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                            <a class="text-dark mb-2" href="/checkout"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-dark" href="/contact"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Our Services</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>Quality Products</a>
+                            <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>Free Shipping</a>
+                            <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>14-Day Return</a>
+                            <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>24/7 Support</a>
+                            <a class="text-dark mb-2" href=""><i class="fa fa-angle-right mr-2"></i>Secure Payment</a>
+                            <a class="text-dark" href=""><i class="fa fa-angle-right mr-2"></i>Best Deals</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
+                        <form action="">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email" required="required">
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row border-top border-light mx-xl-5 py-4">
+            <div class="col-md-6 px-xl-0">
+                <p class="mb-md-0 text-center text-md-left text-dark">
+                    © <a class="text-dark font-weight-semi-bold" href="#">SamutSari</a>. All Rights Reserved.
+                </p>
+            </div>
+            <div class="col-md-6 px-xl-0 text-center text-md-right">
+                <!-- PAYMENT METHODS IMAGE: Replace with your accepted payment methods -->
+                <img class="img-fluid" src="/images/payments.png" alt=""> <!-- CHANGE: Replace with your payment methods image -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top" style="display: none;"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="/mail/jqBootstrapValidation.min.js"></script>
+    <script src="/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+</body>
+</html>
