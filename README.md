@@ -57,15 +57,11 @@ Below are sample UI interfaces from the SamutSari web application:
 The homepage displays product highlights, featured services, and quick access to categories.  
 This page also allows the guests, sellers, and the admin to accesstheir respective login pages.
 
----
-
 ### Marketplace (Guest)
 
 ![Marketplace (Guest)](assets/ui-marketplace.png)
 
 The marketplace allows users to browse available products and services.  
 Users can filter by **price**, **category**, **brand**, or **rating**, and view product details or add items to their cart.
-
----
 
 > _SamutSari – A Barangay Digital Marketplace and Skills Hub._
