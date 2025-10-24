@@ -8,11 +8,6 @@ _SamutSari_ is a web-application platform designed to serve as a marketplace whe
 - [Features](#features)  
 - [Technology Stack](#technology-stack)  
 - [Installation](#installation)  
-- [Usage](#usage)  
-- [Directory Structure](#directory-structure)  
-- [Contributing](#contributing)  
-- [License](#license)  
-- [Contact](#contact)  
 
 ## About
 
