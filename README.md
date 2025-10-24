@@ -64,4 +64,6 @@ This page also allows the guests, sellers, and the admin to accesstheir respecti
 The marketplace allows users to browse available products and services.  
 Users can filter by **price**, **category**, **brand**, or **rating**, and view product details or add items to their cart.
 
+
+---
 > _SamutSari – A Barangay Digital Marketplace and Skills Hub._
